@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textStyle="bold"
+        android:textSize="45sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTextView"
+        android:layout_above="@+id/myImage"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startersButton"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:background="#FFA500"
+            android:text="STARTERS"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mainCourseButton"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:background="#FFA500"
+            android:text="Main Course"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/childrenMealButton"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:background="#FFA500"
+            android:text="Children Meal"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dessertsButton"
+            android:layout_width="195dp"
+            android:layout_height="59dp"
+            android:background="#FFA500"
+            android:text="Desserts"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/myImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/goodkitchenlittlelogo" />
+
+</RelativeLayout>
