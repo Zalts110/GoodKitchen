@@ -1,5 +1,6 @@
 package com.example.goodkitchen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -48,7 +49,18 @@ public class SpecificCategory extends AppCompatActivity {
 
             }
         }
+
+        addRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SpecificCategory.this, UploadRecipe.class);
+                intent.putExtra("categoryName", categoryName);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
 
 }

@@ -4,12 +4,17 @@ import java.util.ArrayList;
 
 public class DataManager {
 
-    private ArrayList<Recipe> mainCourseAllRecipes = new ArrayList<Recipe>();
-    private ArrayList<Recipe> dessertsAllRecipes = new ArrayList<Recipe>();
-    private ArrayList<Recipe> childrenMealAllRecipes = new ArrayList<Recipe>();
-    private ArrayList<Recipe> startersAllRecipes = new ArrayList<Recipe>();
+    private RecipeList mainCourseAllRecipes = new RecipeList();
+    private RecipeList dessertsAllRecipes = new RecipeList();
+    private RecipeList childrenMealAllRecipes = new RecipeList();
+    private RecipeList startersAllRecipes = new RecipeList();
 
     public DataManager(){
+    }
+
+    public void addRecipe(){
+
+
     }
 
 
