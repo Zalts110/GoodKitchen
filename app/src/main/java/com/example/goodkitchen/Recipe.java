@@ -6,9 +6,6 @@ public class Recipe {
 
     private String recipeName;
     private int preparationTime;
-//    private ArrayList<String> ingrideitnsList = new ArrayList<>();
-//    private ArrayList<String> instructionList = new ArrayList<>();
-
     private String ingrideitnsList;
     private String instructionList;
 

@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/childrenMealTitle"
-        tools:listitem="@layout/recipe_name" />
+        tools:listitem="@layout/recipe_name"
+        />
 
     <TextView
         android:id="@+id/dessertsTitle"

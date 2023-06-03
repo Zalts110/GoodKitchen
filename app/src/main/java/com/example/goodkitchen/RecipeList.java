@@ -14,13 +14,8 @@ public class RecipeList {
         return recipesList;
     }
 
-    public void addRecipe(String recipeName, int preparingTime,String ingridients, String instructions){
+    public void addRecipe(Recipe newRecipe){
 
-        Recipe newRecipe = new Recipe();
-        newRecipe.setRecipeName(recipeName);
-        newRecipe.setPreparationTime(preparingTime);
-        newRecipe.setIngridents(ingridients);
-        newRecipe.setInstructions(instructions);
         recipesList.add(newRecipe);
     }
 

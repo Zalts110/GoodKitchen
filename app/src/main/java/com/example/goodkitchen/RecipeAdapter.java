@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
-    private List<Recipe> recipeList;
+    private RecipeList recipeList;
     private Context context;
 
-    public RecipeAdapter(List<Recipe> recipeList, Context context) {
+    public RecipeAdapter(RecipeList recipeList, Context context) {
         this.recipeList = recipeList;
         this.context = context;
     }
@@ -29,13 +29,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        Recipe recipe = recipeList.get(position);
-        holder.recipeNameTextView.setText(recipe.getRecipeName());
+        Recipe recipe = getItem(position);
+        holder.recipeNameTextView.setText(recipeList.getRecipes().get(position).getRecipeName());
+    }
+
+    private Recipe getItem(int position) {
+        return this.recipeList.getRecipes().get(position);
     }
 
     @Override
     public int getItemCount() {
-        return recipeList.size();
+        return this.recipeList == null ? 0 : recipeList.getRecipes().size();
     }
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder {
