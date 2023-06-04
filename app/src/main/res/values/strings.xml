@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GoodKitchen</string>
+
+    <string-array name="sort">
+        <item>Name</item>
+        <item>Preparation Time</item>
+    </string-array>
 </resources>

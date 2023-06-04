@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -13,7 +13,7 @@
         android:textSize="45sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:id="@+id/startersButton"
             android:layout_width="192dp"
             android:layout_height="wrap_content"
-            android:background="#FFA500"
+            android:background="#00695C"
             android:text="STARTERS"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -38,7 +38,7 @@
             android:id="@+id/mainCourseButton"
             android:layout_width="192dp"
             android:layout_height="wrap_content"
-            android:background="#FFA500"
+            android:background="#00695C"
             android:text="Main Course"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
             android:id="@+id/childrenMealButton"
             android:layout_width="192dp"
             android:layout_height="wrap_content"
-            android:background="#FFA500"
+            android:background="#00695C"
             android:text="Children Meal"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
             android:id="@+id/dessertsButton"
             android:layout_width="195dp"
             android:layout_height="59dp"
-            android:background="#FFA500"
+            android:background="#00695C"
             android:text="Desserts"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -73,6 +73,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
-        android:src="@drawable/goodkitchenlittlelogo" />
+        android:src="@drawable/goodkitchenlittlelogo2" />
 
 </RelativeLayout>

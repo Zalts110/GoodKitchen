@@ -6,21 +6,33 @@
     app:cardCornerRadius="20dp"
     android:layout_margin="4dp"
     android:elevation="8dp"
-    app:cardElevation="8dp"
-   >
+    app:cardElevation="8dp">
+
     <RelativeLayout
-        android:id="@+id/score_layout"
+        android:id="@+id/recipe_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFA500">
+        android:background="#00695C">
 
+        <ImageView
+            android:id="@+id/recipeImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/defaultimageforrecipe"
+            android:contentDescription="Recipe Image"
+            android:layout_alignBottom="@id/recipeName"
+            />
 
         <TextView
             android:id="@+id/recipeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/recipeImage"
             android:padding="16dp"
-            android:textSize="18sp"
+            android:textSize="23sp"
             android:textColor="@android:color/black"
             android:text="recipe name"
             android:textStyle="bold" />

@@ -1,52 +1,67 @@
 package com.example.goodkitchen;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import android.net.Uri;
 
-public class Recipe {
-
+public class Recipe implements Serializable {
     private String recipeName;
     private int preparationTime;
-    private String ingrideitnsList;
+    private String ingredientsList;
     private String instructionList;
+    private String imageUri;
 
+    // Define a default image URI for recipes without a photo
+    private static final String DEFAULT_IMAGE_URI = "android.resource://com.example.goodkitchen/" + R.drawable.defaultimageforrecipe;
 
-    public Recipe(){
-//        ingrideitnsList = new ArrayList<String>();
-//        instructionList = new ArrayList<String>();
+    public Recipe() {
     }
 
-    public String getRecipeName()
-{
-    return this.recipeName;
-}
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeName(String name) {
+        this.recipeName = name;
+    }
 
     public int getPreparationTime() {
         return preparationTime;
     }
 
-    public void setRecipeName(String name){
-        this.recipeName = name;
-    }
-
-    public void setPreparationTime(int time){
+    public void setPreparationTime(int time) {
         this.preparationTime = time;
     }
 
-    public String setIngridents(String ingridients) {
-        this.ingrideitnsList = ingridients;
-        return this.ingrideitnsList;
+    public String getImageUriString() {
+        return imageUri;
     }
-    public String setInstructions(String instructions) {
+
+    public void setImageUriString(String imageUriString) {
+        this.imageUri = imageUriString;
+    }
+
+    public String getIngredients() {
+        return ingredientsList;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredientsList = ingredients;
+    }
+
+    public String getInstructions() {
+        return instructionList;
+    }
+
+    public void setInstructions(String instructions) {
         this.instructionList = instructions;
-        return this.instructionList;
     }
 
-
+    @Override
     public String toString() {
-        return "Name" +
-                recipeName  + '\'' +
-                "Preparation time" +
-                preparationTime + '\''
-                ;
+        return "Name: " + recipeName + "\n" +
+                "Preparation time: " + preparationTime + "\n";
     }
 }
+
+
+
