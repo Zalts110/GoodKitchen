@@ -5,6 +5,9 @@ import java.util.UUID;
 
 import android.net.Uri;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.ktx.Firebase;
+
 public class Recipe implements Serializable {
     private String recipeName;
     private int preparationTime;
@@ -14,11 +17,14 @@ public class Recipe implements Serializable {
 
     private String id;
 
+    private String UID;
+
     // Define a default image URI for recipes without a photo
     private static final String DEFAULT_IMAGE_URI = "android.resource://com.example.goodkitchen/" + R.drawable.defaultimageforrecipe;
 
     public Recipe() {
         this.id = UUID.randomUUID().toString();
+        this.id = FirebaseAuth.getInstance().getUid();
     }
 
     public String getRecipeName() {
@@ -67,6 +73,13 @@ public class Recipe implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    public String getUID() {
+        return UID;
+    }
 
     @Override
     public String toString() {
@@ -74,6 +87,5 @@ public class Recipe implements Serializable {
                 "Preparation time: " + preparationTime + "\n";
     }
 }
-
 
 

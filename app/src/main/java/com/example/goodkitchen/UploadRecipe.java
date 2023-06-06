@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ktx.Firebase;
@@ -102,6 +103,7 @@ public class UploadRecipe extends AppCompatActivity {
         recipe.setIngredients(ingredients);
         recipe.setInstructions(instructions);
         recipe.setPreparationTime(preptime);
+        recipe.setUID(FirebaseAuth.getInstance().getUid());
 
         // Convert selectedImageUri to string and set it as the image URI
         if (selectedImageUri != null) {

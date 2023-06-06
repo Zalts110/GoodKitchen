@@ -2,12 +2,14 @@ package com.example.goodkitchen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class CategoriesActivity extends AppCompatActivity
 {
 
-    private AppCompatButton starters,childrenMeal,mainCourse,desserts;
+    private AppCompatButton starters,childrenMeal,mainCourse,desserts,logoutButton;
     private DataManager dataManager = new DataManager();
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class CategoriesActivity extends AppCompatActivity
         childrenMeal = findViewById(R.id.childrenMealButton);
         mainCourse = findViewById(R.id.mainCourseButton);
         desserts = findViewById(R.id.dessertsButton);
+        logoutButton = findViewById(R.id.logoutButton);
 
 
         starters.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +40,7 @@ public class CategoriesActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(CategoriesActivity.this, SpecificCategory.class);
                 intent.putExtra("categoryName", "Starters"); // Add the string as an extra with a key
+                Log.d("Tag","tag");
                 startActivity(intent);
             }
         });
@@ -68,6 +72,17 @@ public class CategoriesActivity extends AppCompatActivity
                 Intent intent = new Intent(CategoriesActivity.this, SpecificCategory.class);
                 intent.putExtra("categoryName", "Main Course"); // Add the string as an extra with a key
                 startActivity(intent);
+            }
+        });
+
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(CategoriesActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

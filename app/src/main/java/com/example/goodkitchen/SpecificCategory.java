@@ -18,6 +18,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -188,7 +189,7 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
         String categoryName = getIntent().getStringExtra("categoryName");
         DatabaseReference recipesRef = db.getReference(categoryName);
 
-        recipesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        recipesRef.orderByChild("uid").equalTo(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 recipeList.clear(); // Clear the existing recipe list
@@ -219,7 +220,6 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
     }
 
 }
-
 
 
 
