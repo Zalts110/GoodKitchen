@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "423122112378",
+    "firebase_url": "https://goodkitchen-beac2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "goodkitchen-beac2",
+    "storage_bucket": "goodkitchen-beac2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423122112378:android:e1d5f7bb047c68ddbe90c3",
+        "android_client_info": {
+          "package_name": "com.example.goodkitchen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423122112378-n8j3rosljectmeuesoq89otsc90k2jgl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCronkVKEWpGV_qCCxLWs4f9Ix3OPLktkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423122112378-n8j3rosljectmeuesoq89otsc90k2jgl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

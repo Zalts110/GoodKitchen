@@ -13,6 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 public class UploadRecipe extends AppCompatActivity {
 
     EditText rec_name, rec_ingredients, rec_instructions, rec_preptime;
@@ -21,6 +27,7 @@ public class UploadRecipe extends AppCompatActivity {
 
     private static final int SELECT_PICTURE_REQUEST_CODE = 1;
     private Uri selectedImageUri;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +109,7 @@ public class UploadRecipe extends AppCompatActivity {
             recipe.setImageUriString(imageUriString);
         }
 
+
         String categoryName = getIntent().getStringExtra("categoryName");
 
         // Add the recipe to the appropriate category in DataManager
@@ -115,11 +123,30 @@ public class UploadRecipe extends AppCompatActivity {
             } else if (categoryName.equals("Starters")) {
                 DataManager.startersRecipe.addRecipe(recipe);
             }
+            saveToDb(recipe,categoryName);
+            uploadImage(Uri.parse(recipe.getImageUriString()),recipe);
         }
-
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
     }
+    public void saveToDb(Recipe recipe,String category){
+        mDatabase = FirebaseDatabase.getInstance().getReference(category);
+        mDatabase.push().setValue(recipe);
 
+    }
+
+    public static void uploadImage(Uri imageURi, Recipe recipe) {
+        String fileName = String.valueOf(System.currentTimeMillis());
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("IMAGES/" + fileName);
+        storageReference.putFile(imageURi).continueWithTask(task -> {
+            return storageReference.getDownloadUrl();
+        }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Uri downloadURi = task.getResult();
+                recipe.setImageUriString(downloadURi.toString());
+            }
+        });
+    }
 }

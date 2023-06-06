@@ -36,6 +36,9 @@ public class RecipeList {
         });
     }
 
+    public void setRecipesList(ArrayList<Recipe> recipesList) {
+        this.recipesList = recipesList;
+    }
 
     public int size() {
         return recipesList.size();
@@ -45,6 +48,18 @@ public class RecipeList {
         return recipesList.get(position);
     }
 
+    public boolean containsRecipe(Recipe recipe) {
+        for (Recipe r : recipesList) {
+            if (r.getId().equals(recipe.getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void clear() {
+        recipesList.clear();
+    }
 
 
     @Override

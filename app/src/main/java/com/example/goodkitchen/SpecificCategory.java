@@ -1,6 +1,8 @@
 package com.example.goodkitchen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +11,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SpecificCategory extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -63,27 +72,32 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
                     RecipeNameAdapter childrenRecipeNameAdapter = new RecipeNameAdapter(DataManager.childrenRecipe, SpecificCategory.this);
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(childrenRecipeNameAdapter);
+                    loadRecipesFromDb(DataManager.childrenRecipe,childrenRecipeNameAdapter,this);
                     break;
                 case "Desserts":
                     dessertsTitle.setVisibility(View.VISIBLE);
                     RecipeNameAdapter dessertRecipeNameAdapter = new RecipeNameAdapter(DataManager.dessertRecipe, SpecificCategory.this);
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(dessertRecipeNameAdapter);
+                    loadRecipesFromDb(DataManager.dessertRecipe,dessertRecipeNameAdapter,this);
                     break;
                 case "Main Course":
                     mainCourseTitle.setVisibility(View.VISIBLE);
                     RecipeNameAdapter mainCourseRecipeNameAdapter = new RecipeNameAdapter(DataManager.mainCourseRecipe, SpecificCategory.this);
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(mainCourseRecipeNameAdapter);
+                    loadRecipesFromDb(DataManager.mainCourseRecipe,mainCourseRecipeNameAdapter,this);
                     break;
                 case "Starters":
                     startersTitle.setVisibility(View.VISIBLE);
                     RecipeNameAdapter startersRecipeNameAdapter = new RecipeNameAdapter(DataManager.startersRecipe, SpecificCategory.this);
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(startersRecipeNameAdapter);
+                    loadRecipesFromDb(DataManager.startersRecipe,startersRecipeNameAdapter,this);
                     break;
 
             }
+
         }
 
         addRecipeButton.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +180,42 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
                 }
             }
         }
+    }
+
+
+    private void loadRecipesFromDb(RecipeList recipeList, RecipeNameAdapter adapter, Context context) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        String categoryName = getIntent().getStringExtra("categoryName");
+        DatabaseReference recipesRef = db.getReference(categoryName);
+
+        recipesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                recipeList.clear(); // Clear the existing recipe list
+
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Recipe recipe = child.getValue(Recipe.class);
+
+                    // Convert the image URI string to Uri object if it exists
+                    String imageUriString = recipe.getImageUriString();
+                    if (imageUriString != null && !imageUriString.isEmpty()) {
+                        Uri imageUri = Uri.parse(imageUriString);
+                        recipe.setImageUriString(imageUri.toString());
+                    }
+
+                    recipeList.addRecipe(recipe); // Add the updated recipe to the list
+                }
+
+                Log.d("Tag", DataManager.getRecipeListByCategory(categoryName).toString());
+                recipeListView.setLayoutManager(new LinearLayoutManager(context));
+                recipeListView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle the database error
+            }
+        });
     }
 
 }
