@@ -135,6 +135,7 @@ public class UploadRecipe extends AppCompatActivity {
     public void saveToDb(Recipe recipe,String category){
         mDatabase = FirebaseDatabase.getInstance().getReference(category);
         mDatabase.push().setValue(recipe);
+        Log.d("Tag1", mDatabase.toString());
 
     }
 
