@@ -73,16 +73,40 @@
             android:background="@color/white"/>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/uploadButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Upload Recipy"
-            android:textSize="22sp"
-            android:layout_marginTop="10dp"
-            android:onClick="btnUploadRecipe"
-            android:backgroundTint="#FF8F00"
-            android:textColor="@color/black"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/uploadButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="Upload Recipe"
+                android:textSize="22sp"
+                android:onClick="btnUploadRecipe"
+                android:backgroundTint="#FF8F00"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="Edit Recipe"
+                android:textSize="22sp"
+                android:onClick="btnEditRecipe"
+                android:backgroundTint="#FF8F00"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/selectPictureButton"

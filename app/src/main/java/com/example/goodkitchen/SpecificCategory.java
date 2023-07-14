@@ -70,28 +70,28 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
             switch (categoryName) {
                 case "Children Meal":
                     childrenMealTitle.setVisibility(View.VISIBLE);
-                    RecipeNameAdapter childrenRecipeNameAdapter = new RecipeNameAdapter(DataManager.childrenRecipe, SpecificCategory.this);
+                    RecipeNameAdapter childrenRecipeNameAdapter = new RecipeNameAdapter(DataManager.childrenRecipe, SpecificCategory.this,"Children Meal");
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(childrenRecipeNameAdapter);
                     loadRecipesFromDb(DataManager.childrenRecipe,childrenRecipeNameAdapter,this);
                     break;
                 case "Desserts":
                     dessertsTitle.setVisibility(View.VISIBLE);
-                    RecipeNameAdapter dessertRecipeNameAdapter = new RecipeNameAdapter(DataManager.dessertRecipe, SpecificCategory.this);
+                    RecipeNameAdapter dessertRecipeNameAdapter = new RecipeNameAdapter(DataManager.dessertRecipe, SpecificCategory.this,"Desserts");
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(dessertRecipeNameAdapter);
                     loadRecipesFromDb(DataManager.dessertRecipe,dessertRecipeNameAdapter,this);
                     break;
                 case "Main Course":
                     mainCourseTitle.setVisibility(View.VISIBLE);
-                    RecipeNameAdapter mainCourseRecipeNameAdapter = new RecipeNameAdapter(DataManager.mainCourseRecipe, SpecificCategory.this);
+                    RecipeNameAdapter mainCourseRecipeNameAdapter = new RecipeNameAdapter(DataManager.mainCourseRecipe, SpecificCategory.this,"Main Course");
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(mainCourseRecipeNameAdapter);
                     loadRecipesFromDb(DataManager.mainCourseRecipe,mainCourseRecipeNameAdapter,this);
                     break;
                 case "Starters":
                     startersTitle.setVisibility(View.VISIBLE);
-                    RecipeNameAdapter startersRecipeNameAdapter = new RecipeNameAdapter(DataManager.startersRecipe, SpecificCategory.this);
+                    RecipeNameAdapter startersRecipeNameAdapter = new RecipeNameAdapter(DataManager.startersRecipe, SpecificCategory.this,"Starters");
                     recipeListView.setLayoutManager(new LinearLayoutManager(this));
                     recipeListView.setAdapter(startersRecipeNameAdapter);
                     loadRecipesFromDb(DataManager.startersRecipe,startersRecipeNameAdapter,this);
@@ -106,6 +106,7 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
                 Intent intent = new Intent(SpecificCategory.this, UploadRecipe.class);
                 intent.putExtra("categoryName", categoryName);
+                intent.putExtra("uploadOrEdit", "Upload");
                 startActivityForResult(intent, 1); // Start the activity for result
             }
         });
@@ -137,7 +138,7 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
                 }
 
                 // Update the RecyclerView adapter with the sorted list
-                RecipeNameAdapter adapter = new RecipeNameAdapter(recipeList, SpecificCategory.this);
+                RecipeNameAdapter adapter = new RecipeNameAdapter(recipeList, SpecificCategory.this,categoryName);
                 recipeListView.setAdapter(adapter);
 
                 // Update the selected sort tag
@@ -163,19 +164,19 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
             if (categoryName != null) {
                 switch (categoryName) {
                     case "Children Meal":
-                        RecipeNameAdapter childrenRecipeNameAdapter = new RecipeNameAdapter(DataManager.childrenRecipe, SpecificCategory.this);
+                        RecipeNameAdapter childrenRecipeNameAdapter = new RecipeNameAdapter(DataManager.childrenRecipe, SpecificCategory.this,"Children Meal");
                         recipeListView.setAdapter(childrenRecipeNameAdapter);
                         break;
                     case "Desserts":
-                        RecipeNameAdapter dessertRecipeNameAdapter = new RecipeNameAdapter(DataManager.dessertRecipe, SpecificCategory.this);
+                        RecipeNameAdapter dessertRecipeNameAdapter = new RecipeNameAdapter(DataManager.dessertRecipe, SpecificCategory.this,"Desserts");
                         recipeListView.setAdapter(dessertRecipeNameAdapter);
                         break;
                     case "Main Course":
-                        RecipeNameAdapter mainCourseRecipeNameAdapter = new RecipeNameAdapter(DataManager.mainCourseRecipe, SpecificCategory.this);
+                        RecipeNameAdapter mainCourseRecipeNameAdapter = new RecipeNameAdapter(DataManager.mainCourseRecipe, SpecificCategory.this,"Main Course");
                         recipeListView.setAdapter(mainCourseRecipeNameAdapter);
                         break;
                     case "Starters":
-                        RecipeNameAdapter startersRecipeNameAdapter = new RecipeNameAdapter(DataManager.startersRecipe, SpecificCategory.this);
+                        RecipeNameAdapter startersRecipeNameAdapter = new RecipeNameAdapter(DataManager.startersRecipe, SpecificCategory.this,"Starters");
                         recipeListView.setAdapter(startersRecipeNameAdapter);
                         break;
                 }
@@ -220,7 +221,6 @@ public class SpecificCategory extends AppCompatActivity implements AdapterView.O
     }
 
 }
-
 
 
 

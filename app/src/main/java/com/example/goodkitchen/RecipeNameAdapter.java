@@ -18,9 +18,12 @@ public class RecipeNameAdapter extends RecyclerView.Adapter<RecipeNameAdapter.Re
     private RecipeList recipeList;
     private Context context;
 
-    public RecipeNameAdapter(RecipeList recipeList, Context context) {
+    private String category;
+
+    public RecipeNameAdapter(RecipeList recipeList, Context context,String category) {
         this.recipeList = recipeList;
         this.context = context;
+        this.category = category;
     }
 
     @NonNull
@@ -76,7 +79,9 @@ public class RecipeNameAdapter extends RecyclerView.Adapter<RecipeNameAdapter.Re
         private void openRecipeActivity(Recipe recipe) {
             Intent intent = new Intent(context, RecipeActivity.class);
             intent.putExtra("recipe", recipe);
+            intent.putExtra("category",category);
             context.startActivity(intent);
+
         }
     }
 }

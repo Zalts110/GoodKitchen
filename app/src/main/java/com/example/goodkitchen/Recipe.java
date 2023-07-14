@@ -1,6 +1,8 @@
 package com.example.goodkitchen;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
 
 import android.net.Uri;
@@ -23,8 +25,8 @@ public class Recipe implements Serializable {
     private static final String DEFAULT_IMAGE_URI = "android.resource://com.example.goodkitchen/" + R.drawable.defaultimageforrecipe;
 
     public Recipe() {
-        this.id = UUID.randomUUID().toString();
-        this.id = FirebaseAuth.getInstance().getUid();
+        this.id = String.valueOf(Instant.now().toEpochMilli());
+        this.UID = FirebaseAuth.getInstance().getUid();
     }
 
     public String getRecipeName() {
@@ -83,8 +85,15 @@ public class Recipe implements Serializable {
 
     @Override
     public String toString() {
-        return "Name: " + recipeName + "\n" +
-                "Preparation time: " + preparationTime + "\n";
+        return "Recipe{" +
+                "recipeName='" + recipeName + '\'' +
+                ", preparationTime=" + preparationTime +
+                ", ingredientsList='" + ingredientsList + '\'' +
+                ", instructionList='" + instructionList + '\'' +
+                ", imageUri='" + imageUri + '\'' +
+                ", id='" + id + '\'' +
+                ", UID='" + UID + '\'' +
+                '}';
     }
 }
 
